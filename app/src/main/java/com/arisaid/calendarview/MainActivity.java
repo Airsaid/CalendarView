@@ -1,4 +1,4 @@
-package com.arisaid.calendardemo;
+package com.arisaid.calendarview;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

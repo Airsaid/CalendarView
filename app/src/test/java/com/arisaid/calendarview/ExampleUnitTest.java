@@ -1,4 +1,4 @@
-package com.arisaid.calendardemo;
+package com.arisaid.calendarview;
 
 import org.junit.Test;
 

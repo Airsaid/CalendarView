@@ -11,7 +11,7 @@ import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.arisaid.calendardemo.R;
+import com.arisaid.calendarview.R;
 
 import java.util.ArrayList;
 import java.util.Calendar;
