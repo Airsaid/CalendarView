@@ -55,7 +55,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 for (String date : dates) {
                     Log.e("test", "date: " + date);
                 }
-                
             }
         });
 
