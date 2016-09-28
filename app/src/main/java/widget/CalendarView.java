@@ -33,7 +33,7 @@ public class CalendarView extends View {
     /**
      * 可选日期数据
      */
-    private List<String> mOptionalDates;
+    private List<String> mOptionalDates = new ArrayList<>();
 
     /**
      * 以选日期数据
@@ -108,12 +108,6 @@ public class CalendarView extends View {
     }
 
     @Override
-    public void invalidate() {
-        // 避免程序过度绘制
-        if(hasWindowFocus()) super.invalidate();
-    }
-
-    @Override
     protected void onDraw(Canvas canvas) {
         initSize();
 
@@ -145,15 +139,15 @@ public class CalendarView extends View {
                 // 可选，继续判断是否是点击过的
                 if(!mSelectedDates.contains(getSelData(mSelYear, mSelMonth, mDays[row][column]))){
                     // 没有点击过，绘制默认背景
-                    canvas.drawBitmap(mBgNotOptBitmap, startX - 22, startY - 55, mPaint);
+                    canvas.drawBitmap(mBgNotOptBitmap, startX - (mBgNotOptBitmap.getWidth() / 3), startY - (mBgNotOptBitmap.getHeight() / 2), mPaint);
                     mPaint.setColor(mDayNormalColor);
                 }else{
                     // 点击过，绘制点击过的背景
-                    canvas.drawBitmap(mBgOptBitmap, startX - 22, startY - 55, mPaint);
+                    canvas.drawBitmap(mBgOptBitmap, startX- (mBgOptBitmap.getWidth() / 3), startY - (mBgOptBitmap.getHeight() / 2), mPaint);
                     mPaint.setColor(mDayPressedColor);
                 }
                 // 绘制天数
-                canvas.drawText(dayStr, startX, startY - 10, mPaint);
+                canvas.drawText(dayStr, startX, startY, mPaint);
             }else{
                 mPaint.setColor(mDayNotOptColor);
                 canvas.drawText(dayStr, startX, startY, mPaint);
@@ -197,9 +191,11 @@ public class CalendarView extends View {
 
         // 判断是否点击过
         boolean isSelected = mSelectedDates.contains(getSelData(mSelYear, mSelMonth, mSelDate));
+        // 判断是否可以添加
+        boolean isCanAdd = mOptionalDates.contains(getSelData(mSelYear, mSelMonth, mSelDate));
         if(isSelected){
             mSelectedDates.remove(getSelData(mSelYear, mSelMonth, mSelDate));
-        }else{
+        }else if(isCanAdd){
             mSelectedDates.add(getSelData(mSelYear, mSelMonth, mSelDate));
         }
 
@@ -226,6 +222,29 @@ public class CalendarView extends View {
      */
     public void setOptionalDate(List<String> dates){
         this.mOptionalDates = dates;
+        invalidate();
+    }
+
+    /**
+     * 设置已选日期数据
+     */
+    public void setSelectedDates(List<String> dates){
+        this.mSelectedDates = dates;
+    }
+
+    /**
+     * 获取已选日期数据
+     */
+    public List<String> getSelectedDates(){
+        return mSelectedDates;
+    }
+
+    /**
+     * 设置日历是否可以点击
+     */
+    @Override
+    public void setClickable(boolean clickable) {
+        this.mClickable = clickable;
     }
 
     /**
@@ -234,7 +253,7 @@ public class CalendarView extends View {
      * @param month 月
      * @param date  日
      */
-    public void setSelYTD(int year, int month, int date){
+    private void setSelYTD(int year, int month, int date){
         this.mSelYear   =   year;
         this.mSelMonth  =   month;
         this.mSelDate   =   date;
@@ -320,28 +339,6 @@ public class CalendarView extends View {
             day = String.valueOf(date);
         }
         return year + monty + day;
-    }
-
-    /**
-     * 获取已选日期数据
-     */
-    public List<String> getSelectedDates(){
-        return mSelectedDates;
-    }
-
-    /**
-     * 设置已选日期数据
-     */
-    public void setSelectedDates(List<String> dates){
-        this.mSelectedDates = dates;
-    }
-
-    /**
-     * 设置日历是否可以点击
-     */
-    @Override
-    public void setClickable(boolean clickable) {
-        this.mClickable = clickable;
     }
 
     private OnClickListener mListener;

@@ -44,7 +44,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // 设置不可以被点击
 //        mCalendarView.setClickable(false);
 
-
         // 设置点击事件
         mCalendarView.setOnClickDate(new CalendarView.OnClickListener() {
             @Override
