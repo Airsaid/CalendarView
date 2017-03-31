@@ -1,11 +1,11 @@
 # CalendarView
-这是一个Android平台上可多选的自定义日历控件
+这是一个 Android 平台上可多选的自定义日历控件。
 
-#效果图
+# 效果图
  ![image](https://github.com/Airsaid/CalendarView/blob/master/gif/cacendarview.gif)
 
-#使用步骤
-1，初始化自定义日历View：
+# 使用步骤
+1，初始化自定义日历 View：
 ```
 CalendarView mCalendarView = (CalendarView) findViewById(R.id.calendarView);
 ```
@@ -23,13 +23,13 @@ mDatas.add("20160910");
 mDatas.add("20160911");
 mDatas.add("20160912");
 ```
-3，设置给自定义日历View：
+3，设置给自定义日历 View：
 ```
 // 设置可选日期
 mCalendarView.setOptionalDate(mDatas);
 ```
 
-#设置点击监听
+# 设置点击监听
 ```
 mCalendarView.setOnClickDate(new CalendarView.OnClickListener() {
     @Override
@@ -54,51 +54,6 @@ mCalendarView.setSelectedDates(mDatas);
 mCalendarView.setClickable(false);
 ```
 
-#代码片段
-```
- // 绘制背景
-        mPaint.setColor(mBgColor);
-        canvas.drawRect(0, 0, canvas.getWidth(), canvas.getHeight(), mPaint);
-
-        mDays = new int[6][7];
-        // 设置绘制字体大小
-        mPaint.setTextSize(mDayTextSize * mMetrics.scaledDensity);
-        // 设置绘制字体颜色
-
-        String dayStr;
-        // 获取当月一共有多少天
-        mMonthDays = DateUtils.getMonthDays(mSelYear, mSelMonth);
-        // 获取当月第一天位于周几
-        mWeekNumber = DateUtils.getFirstDayWeek(mSelYear, mSelMonth);
-
-        for(int day = 0; day < mMonthDays; day++){
-            dayStr = String.valueOf(day + 1);
-            int column  =  (day + mWeekNumber - 1) % 7;
-            int row     =  (day + mWeekNumber - 1) / 7;
-            mDays[row][column] = day + 1;
-            int startX = (int) (mColumnSize * column + (mColumnSize - mPaint.measureText(dayStr)) / 2);
-            int startY = (int) (mRowSize * row + mRowSize / 2 - (mPaint.ascent() + mPaint.descent()) / 2);
-
-            // 判断当前天数是否可选
-            if(mOptionalDates.contains(getSelData(mSelYear, mSelMonth, mDays[row][column]))){
-                // 可选，继续判断是否是点击过的
-                if(!mSelectedDates.contains(getSelData(mSelYear, mSelMonth, mDays[row][column]))){
-                    // 没有点击过，绘制默认背景
-                    canvas.drawBitmap(mBgNotOptBitmap, startX - 22, startY - 55, mPaint);
-                    mPaint.setColor(mDayNormalColor);
-                }else{
-                    // 点击过，绘制点击过的背景
-                    canvas.drawBitmap(mBgOptBitmap, startX - 22, startY - 55, mPaint);
-                    mPaint.setColor(mDayPressedColor);
-                }
-                // 绘制天数
-                canvas.drawText(dayStr, startX, startY - 10, mPaint);
-            }else{
-                mPaint.setColor(mDayNotOptColor);
-                canvas.drawText(dayStr, startX, startY, mPaint);
-            }
-        }
-```
-
-
-
+# 联系我
+* 博客：http://blog.csdn.net/airsaid
+* QQ 群：5707887
