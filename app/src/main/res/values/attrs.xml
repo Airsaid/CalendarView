@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 自定义星期 View -->
+    <declare-styleable name="WeekView">
+        <attr name="wv_textColor" format="color|reference"/>
+        <attr name="wv_textSize" format="dimension|reference"/>
+    </declare-styleable>
+
+    <!-- 自定义日历 View -->
+    <declare-styleable name="CalendarView">
+        <attr name="cv_textColor" format="color|reference"/>
+        <attr name="cv_selectTextColor" format="color|reference"/>
+        <attr name="cv_textSize" format="dimension|reference"/>
+        <attr name="cv_selectTextSize" format="dimension|reference"/>
+        <attr name="cv_dayBackground" format="reference"/>
+        <attr name="cv_selectDayBackground" format="reference"/>
+        <attr name="cv_dateFormatPattern" format="string|reference"/>
+    </declare-styleable>
+
+</resources>

@@ -1,78 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="@dimen/activity_horizontal_margin"
     tools:context="com.arisaid.calendarview.MainActivity">
+
+    <TextView
+        android:id="@+id/txt_date"
+        style="@style/Base.TextAppearance.AppCompat.Medium.Inverse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@android:color/black"/>
+
+    <com.arisaid.calendarview.widget.WeekView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/white"
+        app:wv_textColor="#333333"
+        app:wv_textSize="14sp"/>
+
+    <com.arisaid.calendarview.widget.CalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="@android:color/white"
+        app:cv_dayBackground="@drawable/bg_day_un_selected"
+        app:cv_selectDayBackground="@drawable/bg_day_selected"
+        app:cv_selectTextColor="@android:color/white"
+        app:cv_textColor="#333333"
+        app:cv_textSize="14sp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/white"
-        android:orientation="vertical"
-        android:padding="15dp">
+        android:layout_marginTop="20dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <Button
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
-            android:gravity="center_vertical">
+            android:layout_weight="1"
+            android:onClick="next"
+            android:text="next month"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:drawableLeft="@mipmap/ic_record_smiling_face"
-                android:drawablePadding="5dp"
-                android:text="选择上课时间"
-                android:textColor="#333"
-                android:textSize="14sp"/>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#EDEDED">
-
-                <TextView
-                    android:id="@+id/txt_select_month"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:padding="10dp"
-                    android:textSize="14sp"/>
-
-                <ImageButton
-                    android:id="@+id/img_select_last_month"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@+id/img_select_next_month"
-                    android:background="?android:actionBarItemBackground"
-                    android:padding="10dp"
-                    android:src="@mipmap/ic_arrow_left_gray"/>
-
-                <ImageButton
-                    android:id="@+id/img_select_next_month"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:background="?android:actionBarItemBackground"
-                    android:padding="10dp"
-                    android:src="@mipmap/ic_arrow_rigth_gray"/>
-            </RelativeLayout>
-        </LinearLayout>
-
-        <widget.WeekView
-            android:layout_width="match_parent"
-            android:layout_height="30dp"/>
-
-        <widget.CalendarView
-            android:id="@+id/calendarView"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"/>
-
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="last"
+            android:text="last month"/>
     </LinearLayout>
 </LinearLayout>
