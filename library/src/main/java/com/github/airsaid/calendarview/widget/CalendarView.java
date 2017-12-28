@@ -1,4 +1,4 @@
-package com.arisaid.calendarview.widget;
+package com.github.airsaid.calendarview.widget;
 
 
 import android.content.Context;
@@ -17,8 +17,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 
-import com.arisaid.calendarview.R;
-import com.arisaid.calendarview.util.DateUtils;
+import com.github.airsaid.calendarview.R;
+import com.github.airsaid.calendarview.util.DateUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -240,12 +240,21 @@ public class CalendarView extends View {
     /**
      * 设置选中的日期数据.
      *
-     * @param days 日期数组, 日期格式为 {@link #setDateFormatPattern(String)} 方法所指定,
+     * @param days 日期数据, 日期格式为 {@link #setDateFormatPattern(String)} 方法所指定,
      * 如果没有设置则以默认的格式 {@link #DATE_FORMAT_PATTERN} 进行格式化.
      */
     public void setSelectDate(List<String> days){
         this.mSelectDate = days;
         invalidate();
+    }
+
+    /**
+     * 获取选中的日期数据.
+     *
+     * @return 日期数据.
+     */
+    public List<String> getSelectDate(){
+        return mSelectDate;
     }
 
     /**
@@ -266,6 +275,7 @@ public class CalendarView extends View {
 
     /**
      * 获取当前年份.
+     *
      * @return year.
      */
     public int getYear(){
@@ -274,6 +284,7 @@ public class CalendarView extends View {
 
     /**
      * 获取当前月份.
+     *
      * @return month. (思考后, 决定这里直接按 Calendar 的 API 进行返回, 不进行 +1 处理)
      */
     public int getMonth(){
@@ -281,7 +292,18 @@ public class CalendarView extends View {
     }
 
     /**
+     * 设置当前显示的 Calendar 对象.
+     *
+     * @param calendar 对象.
+     */
+    public void setCalendar(Calendar calendar){
+        this.mCalendar = calendar;
+        invalidate();
+    }
+
+    /**
      * 获取当前显示的 Calendar 对象.
+     *
      * @return Calendar 对象.
      */
     public Calendar getCalendar(){
@@ -290,6 +312,7 @@ public class CalendarView extends View {
 
     /**
      * 设置文字颜色.
+     *
      * @param textColor 文字颜色 {@link ColorInt}.
      */
     public void setTextColor(@ColorInt int textColor){
@@ -298,6 +321,7 @@ public class CalendarView extends View {
 
     /**
      * 设置选中后的的文字颜色.
+     *
      * @param textColor 文字颜色 {@link ColorInt}.
      */
     public void setSelectTextColor(@ColorInt int textColor){
@@ -306,6 +330,7 @@ public class CalendarView extends View {
 
     /**
      * 设置文字大小.
+     *
      * @param textSize 文字大小 (sp).
      */
     public void setTextSize(float textSize){
@@ -314,6 +339,7 @@ public class CalendarView extends View {
 
     /**
      * 设置选中后的的文字大小.
+     *
      * @param textSize 文字大小 (sp).
      */
     public void setSelectTextSize(float textSize){
@@ -322,6 +348,7 @@ public class CalendarView extends View {
 
     /**
      * 设置天的背景.
+     *
      * @param background 背景 drawable.
      */
     public void setDayBackground(Drawable background){
@@ -333,6 +360,7 @@ public class CalendarView extends View {
 
     /**
      * 设置选择后天的背景.
+     *
      * @param background 背景 drawable.
      */
     public void setSelectDayBackground(Drawable background){
@@ -344,6 +372,7 @@ public class CalendarView extends View {
 
     /**
      * 设置日期格式化格式.
+     *
      * @param pattern 格式化格式, 如: yyyy-MM-dd.
      */
     public void setDateFormatPattern(String pattern){
@@ -357,6 +386,7 @@ public class CalendarView extends View {
 
     /**
      * 获取日期格式化格式.
+     *
      * @return 格式化格式.
      */
     public String getDateFormatPattern(){

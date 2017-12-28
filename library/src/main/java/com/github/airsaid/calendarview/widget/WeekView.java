@@ -1,4 +1,4 @@
-package com.arisaid.calendarview.widget;
+package com.github.airsaid.calendarview.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -10,7 +10,8 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.arisaid.calendarview.R;
+import com.github.airsaid.calendarview.R;
+
 
 /**
  * @author airsaid

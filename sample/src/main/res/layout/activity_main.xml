@@ -17,7 +17,7 @@
         android:gravity="center"
         android:textColor="@android:color/black"/>
 
-    <com.arisaid.calendarview.widget.WeekView
+    <com.github.airsaid.calendarview.widget.WeekView
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:layout_marginTop="10dp"
@@ -25,7 +25,7 @@
         app:wv_textColor="#333333"
         app:wv_textSize="14sp"/>
 
-    <com.arisaid.calendarview.widget.CalendarView
+    <com.github.airsaid.calendarview.widget.CalendarView
         android:id="@+id/calendarView"
         android:layout_width="match_parent"
         android:layout_height="300dp"

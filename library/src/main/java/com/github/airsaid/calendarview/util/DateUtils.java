@@ -1,4 +1,4 @@
-package com.arisaid.calendarview.util;
+package com.github.airsaid.calendarview.util;
 
 import java.util.Calendar;
 
@@ -8,6 +8,11 @@ import java.util.Calendar;
  * 日期工具类.
  */
 public class DateUtils {
+
+    private DateUtils(){
+        // 工具类, 禁止实例化
+        throw new AssertionError();
+    }
 
     /**
      * 通过指定的年份和月份获取当月有多少天.
@@ -46,7 +51,7 @@ public class DateUtils {
      * 获取指定年月的 1 号位于周几.
      * @param year  年.
      * @param month 月.
-     * @return 周.
+     * @return      周.
      */
     public static int getFirstDayWeek(int year, int month){
         Calendar calendar = Calendar.getInstance();

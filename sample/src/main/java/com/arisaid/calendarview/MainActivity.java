@@ -8,13 +8,14 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.arisaid.calendarview.widget.CalendarView;
+import com.github.airsaid.calendarview.widget.CalendarView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
+
 
 /**
  * @author airsaid
@@ -31,7 +32,15 @@ public class MainActivity extends AppCompatActivity {
 
         mTxtDate = (TextView) findViewById(R.id.txt_date);
         mCalendarView = (CalendarView) findViewById(R.id.calendarView);
+
+        // 设置已选的日期 (可选操作)
         mCalendarView.setSelectDate(initData());
+
+        // 指定显示的日期, 如当前月的下个月 (可选操作)
+        Calendar calendar = mCalendarView.getCalendar();
+        calendar.add(Calendar.MONTH, 1);
+        mCalendarView.setCalendar(calendar);
+
         mCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, boolean select, int year, int month, int day) {

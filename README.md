@@ -7,7 +7,7 @@ Android 平台上继承 View 实现的自定义日历控件.
 # 使用步骤
 1、布局中：
 ```
-<com.arisaid.calendarview.widget.WeekView
+<com.github.airsaid.library.widget.WeekView
     android:layout_width="match_parent"
     android:layout_height="30dp"
     android:layout_marginTop="10dp"
@@ -15,7 +15,7 @@ Android 平台上继承 View 实现的自定义日历控件.
     app:wv_textColor="#333333"
     app:wv_textSize="14sp"/>
     
-<com.arisaid.calendarview.widget.CalendarView
+<com.github.airsaid.library.widget.CalendarView
     android:id="@+id/calendarView"
     android:layout_width="match_parent"
     android:layout_height="300dp"
