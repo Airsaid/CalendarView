@@ -12,7 +12,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
@@ -151,7 +150,6 @@ public class CalendarView extends View {
 
             String dayStr = String.valueOf(day);
             float textWidth = mPaint.measureText(dayStr);
-            Log.e("test", dayStr + " textWidth: " + textWidth);
             int x = (int) (mColumnWidth * column + (mColumnWidth - textWidth) / 2);
             int y = (int) (mRowHeight * row + mRowHeight / 2 - (mPaint.ascent() + mPaint.descent()) / 2);
 
