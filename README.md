@@ -4,7 +4,13 @@ Android 平台上继承 View 实现的自定义日历控件.
 # 效果图
  ![image](https://github.com/Airsaid/CalendarView/blob/master/gif/preview.gif)
 
-# 使用步骤
+# 快速开始
+在你的 ```build.gradle``` 文件里添加：
+```
+compile 'com.github.airsaid:calendarview:1.0.1'
+```
+
+# 用法示例
 1、布局中：
 ```
 <com.github.airsaid.library.widget.WeekView
@@ -27,21 +33,7 @@ Android 平台上继承 View 实现的自定义日历控件.
     app:cv_textSize="14sp"/>
 ```
 
-2、设置已选天数数据（可选操作）：
-```
-mCalendarView.setSelectDate(initData());
-
-private List<String> initData() {
-    List<String> dates = new ArrayList<>();
-    Calendar calendar = Calendar.getInstance(Locale.CHINA);
-    SimpleDateFormat sdf = new SimpleDateFormat(mCalendarView.getDateFormatPattern(), Locale.CHINA);
-    sdf.format(calendar.getTime());
-    dates.add(sdf.format(calendar.getTime()));
-    return dates;
-}
-```
-
-3、设置监听器：
+2、设置监听器：
 ```
 mCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
     @Override
@@ -55,6 +47,31 @@ mCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
         }
     }
 });
+```
+
+除此之外，还有一些其他的方法：
+
+- 设置已选天数数据：
+```
+List<String> data = new ArrayList();
+// 这里的日期格式可以通过 setDateFormatPattern() 方法设置，默认是 yyyyMMdd
+data.add("20171229");
+data.add("20171230");
+mCalendarView.setSelectDate(data);
+```
+
+- 设置显示指定的日期（如当前月的下个月）：
+```
+Calendar calendar = mCalendarView.getCalendar();
+calendar.add(Calendar.MONTH, 1);
+mCalendarView.setCalendar(calendar);
+```
+
+如果只想做展示效果，可以设置不可点击：
+
+```
+mCalendarView.setClickable(false);
+
 ```
 
 # 属性 & 方法
