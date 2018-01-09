@@ -8,8 +8,8 @@ android {
     defaultConfig {
         minSdkVersion 9
         targetSdkVersion 26
-        versionCode 2
-        versionName "1.0.1"
+        versionCode 3
+        versionName "1.0.2"
     }
 
     buildTypes {
@@ -41,7 +41,7 @@ publish {
     userOrg = 'airsaid'
     groupId = 'com.github.airsaid'
     artifactId = 'calendarview'
-    publishVersion = '1.0.1'
+    publishVersion = '1.0.2'
     desc = 'this is calendarview.'
     website = 'https://github.com/Airsaid/CalendarView'
 }

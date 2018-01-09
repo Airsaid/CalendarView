@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -24,6 +25,7 @@ public class WeekView extends View {
 
     private int mTextSize;
     private int mTextColor;
+    private Typeface mTypeface;
     private final Paint mPaint;
     private float mMeasureTextWidth;
 
@@ -68,6 +70,9 @@ public class WeekView extends View {
         if(mTextSize != -1){
             mPaint.setTextSize(mTextSize);
         }
+        if(mTypeface != null){
+            mPaint.setTypeface(mTypeface);
+        }
         mPaint.setStyle(Paint.Style.FILL);
         mPaint.setColor(mTextColor);
         int columnWidth = (getWidth() - getPaddingLeft() - getPaddingRight()) / 7;
@@ -99,5 +104,23 @@ public class WeekView extends View {
     public void setTextColor(@ColorInt int color){
         this.mTextColor = color;
         mPaint.setColor(mTextColor);
+    }
+
+    /**
+     * 设置字体.
+     *
+     * @param typeface {@link Typeface}.
+     */
+    public void setTypeface(Typeface typeface){
+        this.mTypeface = typeface;
+        invalidate();
+    }
+
+    /**
+     * 获取 {@link Paint} 对象.
+     * @return {@link Paint}.
+     */
+    public Paint getPaint(){
+        return mPaint;
     }
 }

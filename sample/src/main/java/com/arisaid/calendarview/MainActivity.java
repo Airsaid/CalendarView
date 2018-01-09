@@ -1,5 +1,6 @@
 package com.arisaid.calendarview;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -40,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
         Calendar calendar = mCalendarView.getCalendar();
         calendar.add(Calendar.MONTH, 1);
         mCalendarView.setCalendar(calendar);
+
+        // 设置字体
+        mCalendarView.setTypeface(Typeface.SERIF);
 
         mCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override

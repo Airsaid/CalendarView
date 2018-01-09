@@ -7,7 +7,7 @@ Android 平台上继承 View 实现的自定义日历控件.
 # 快速开始
 在你的 ```build.gradle``` 文件里添加：
 ```
-compile 'com.github.airsaid:calendarview:1.0.1'
+compile 'com.github.airsaid:calendarview:1.0.2'
 ```
 
 # 用法示例
@@ -49,7 +49,7 @@ mCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
 });
 ```
 
-除此之外，还有一些其他的方法：
+除此之外，还有一些其他的额外方法：
 
 - 设置已选天数数据：
 ```
@@ -67,7 +67,12 @@ calendar.add(Calendar.MONTH, 1);
 mCalendarView.setCalendar(calendar);
 ```
 
-如果只想做展示效果，可以设置不可点击：
+- 设置字体：
+```
+mCalendarView.setTypeface(typeface);
+```
+
+- 如果只想做展示效果，可以设置不可点击：
 
 ```
 mCalendarView.setClickable(false);

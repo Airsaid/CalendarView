@@ -6,6 +6,7 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
@@ -50,6 +51,8 @@ public class CalendarView extends View {
     private Drawable mSelectDayBackground;
     /** 日期格式化格式 */
     private String mDateFormatPattern;
+    /** 字体 */
+    private Typeface mTypeface;
 
     /** 每列宽度 */
     private int mColumnWidth;
@@ -182,6 +185,9 @@ public class CalendarView extends View {
     private void drawText(Canvas canvas, String text, @ColorInt int color, float size, int x, int y){
         mPaint.setColor(color);
         mPaint.setTextSize(size);
+        if(mTypeface != null){
+            mPaint.setTypeface(mTypeface);
+        }
         canvas.drawText(text, x, y, mPaint);
     }
 
@@ -382,6 +388,24 @@ public class CalendarView extends View {
             this.mDateFormatPattern = DATE_FORMAT_PATTERN;
         }
         this.mDateFormat = new SimpleDateFormat(mDateFormatPattern, Locale.CHINA);
+    }
+
+    /**
+     * 设置字体.
+     *
+     * @param typeface {@link Typeface}.
+     */
+    public void setTypeface(Typeface typeface){
+        this.mTypeface = typeface;
+        invalidate();
+    }
+
+    /**
+     * 获取 {@link Paint} 对象.
+     * @return {@link Paint}.
+     */
+    public Paint getPaint(){
+        return mPaint;
     }
 
     /**
