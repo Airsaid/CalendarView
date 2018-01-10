@@ -90,7 +90,13 @@ mCalendarView.setClickable(false);
 | cv_selectDayBackground | setSelectDayBackground(Drawable background)|设置选中后天的背景 |
 | cv_dateFormatPattern | setDateFormatPattern(String pattern)|设置日期格式化格式 |
 
-## 联系我
+
+# TODO
+- [ ] 添加长按事件。
+- [ ] 自定义天的视图。
+- [ ] 添加当前天的自定义配置。
+
+# 联系我
 - **QQ 群：** 5707887
 - **Email：** airsaid1024@gmail.com
 - **Blog：**[http://blog.csdn.net/airsaid](http://blog.csdn.net/airsaid)
