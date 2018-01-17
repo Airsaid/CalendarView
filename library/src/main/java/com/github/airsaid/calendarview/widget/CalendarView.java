@@ -157,7 +157,8 @@ public class CalendarView extends View {
             int y = (int) (mRowHeight * row + mRowHeight / 2 - (mPaint.ascent() + mPaint.descent()) / 2);
 
             // 判断 day 是否在选择日期内
-            if(mSelectDate.size() == 0 || !mSelectDate.contains(getFormatDate(year, month - 1, day))){
+            if(mSelectDate == null || mSelectDate.size() == 0 ||
+                    !mSelectDate.contains(getFormatDate(year, month - 1, day))){
                 // 没有则绘制默认背景和文字颜色
                 drawBackground(canvas, mDayBackground, column, row);
                 drawText(canvas, dayStr, mTextColor, mTextSize, x, y);
