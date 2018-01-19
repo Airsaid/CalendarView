@@ -45,14 +45,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:onClick="next"
-            android:text="next month"/>
+            android:onClick="last"
+            android:text="last month"/>
 
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:onClick="last"
-            android:text="last month"/>
+            android:onClick="next"
+            android:text="next month"/>
     </LinearLayout>
 </LinearLayout>

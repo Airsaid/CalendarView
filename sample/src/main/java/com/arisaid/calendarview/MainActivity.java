@@ -20,6 +20,8 @@ import java.util.Locale;
 
 /**
  * @author airsaid
+ *
+ * {@link CalendarView} 演示例子, 以下方法都是可选操作, 更多方法请查看 {@link CalendarView}.
  */
 public class MainActivity extends AppCompatActivity {
 
@@ -30,14 +32,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         mTxtDate = (TextView) findViewById(R.id.txt_date);
         mCalendarView = (CalendarView) findViewById(R.id.calendarView);
 
-        // 设置已选的日期 (可选操作)
+        // 设置已选的日期
         mCalendarView.setSelectDate(initData());
 
-        // 指定显示的日期, 如当前月的下个月 (可选操作)
+        // 指定显示的日期, 如当前月的下个月
         Calendar calendar = mCalendarView.getCalendar();
         calendar.add(Calendar.MONTH, 1);
         mCalendarView.setCalendar(calendar);
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         // 设置字体
         mCalendarView.setTypeface(Typeface.SERIF);
 
+        // 设置日期状态改变监听
         mCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, boolean select, int year, int month, int day) {
@@ -62,6 +64,21 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        // 设置是否能够改变日期状态
+        mCalendarView.setChangeDateStatus(true);
+
+        // 设置日期点击监听
+        mCalendarView.setOnDataClickListener(new CalendarView.OnDataClickListener() {
+            @Override
+            public void onDataClick(@NonNull CalendarView view, int year, int month, int day) {
+                Log.e("test", "year: " + year);
+                Log.e("test", "month,: " + (month + 1));
+                Log.e("test", "day: " + day);
+            }
+        });
+        // 设置是否能够点击
+        mCalendarView.setClickable(true);
+
         setCurDate();
     }
 

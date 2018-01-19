@@ -16,6 +16,7 @@
         <attr name="cv_dayBackground" format="reference"/>
         <attr name="cv_selectDayBackground" format="reference"/>
         <attr name="cv_dateFormatPattern" format="string|reference"/>
+        <attr name="cv_isChangeDateStatus" format="boolean|reference"/>
     </declare-styleable>
 
 </resources>

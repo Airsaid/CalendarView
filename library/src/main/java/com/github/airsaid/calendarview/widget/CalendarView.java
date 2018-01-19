@@ -1,6 +1,5 @@
 package com.github.airsaid.calendarview.widget;
 
-
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -53,6 +52,8 @@ public class CalendarView extends View {
     private String mDateFormatPattern;
     /** 字体 */
     private Typeface mTypeface;
+    /** 日期状态是否能够改变 */
+    private boolean mIsChangeDateStatus;
 
     /** 每列宽度 */
     private int mColumnWidth;
@@ -63,12 +64,25 @@ public class CalendarView extends View {
     /** 存储对应列行处的天 */
     private int[][] mDays = new int[6][7];
 
+    private OnDataClickListener  mOnDataClickListener;
     private OnDateChangeListener mChangeListener;
     private SimpleDateFormat mDateFormat;
     private Calendar mSelectCalendar;
     private Calendar mCalendar;
     private Paint mPaint;
     private int mSlop;
+
+    public interface OnDataClickListener{
+
+        /**
+         * 日期点击监听.
+         * @param view     与次监听器相关联的 View.
+         * @param year     对应的年.
+         * @param month    对应的月.
+         * @param day      对应的日.
+         */
+        void onDataClick(@NonNull CalendarView view, int year, int month, int day);
+    }
 
     public interface OnDateChangeListener {
 
@@ -125,6 +139,9 @@ public class CalendarView extends View {
 
         String pattern = a.getString(R.styleable.CalendarView_cv_dateFormatPattern);
         setDateFormatPattern(pattern);
+
+        boolean isChange = a.getBoolean(R.styleable.CalendarView_cv_isChangeDateStatus, false);
+        setChangeDateStatus(isChange);
 
         a.recycle();
     }
@@ -226,22 +243,32 @@ public class CalendarView extends View {
         if(day < 1){
             return;
         }
-        // 如果选中的天已经选择则取消选中
+
         int year = mCalendar.get(Calendar.YEAR);
         int month = mCalendar.get(Calendar.MONTH);
-        String date = getFormatDate(year, month, day);
-        if(mSelectDate.contains(date)){
-            mSelectDate.remove(date);
-            if(mChangeListener != null){
-                mChangeListener.onSelectedDayChange(this, false, year, month, day);
-            }
-        }else{
-            mSelectDate.add(date);
-            if(mChangeListener != null){
-                mChangeListener.onSelectedDayChange(this, true, year, month, day);
-            }
+        if(mOnDataClickListener != null){
+            mOnDataClickListener.onDataClick(this, year, month, day);
         }
-        invalidate();
+
+        if(mIsChangeDateStatus){
+            // 如果选中的天已经选择则取消选中
+            String date = getFormatDate(year, month, day);
+            if(mSelectDate != null && mSelectDate.contains(date)){
+                mSelectDate.remove(date);
+                if(mChangeListener != null){
+                    mChangeListener.onSelectedDayChange(this, false, year, month, day);
+                }
+            }else{
+                if(mSelectDate == null){
+                    mSelectDate = new ArrayList<>();
+                }
+                mSelectDate.add(date);
+                if(mChangeListener != null){
+                    mChangeListener.onSelectedDayChange(this, true, year, month, day);
+                }
+            }
+            invalidate();
+        }
     }
 
     /**
@@ -392,6 +419,15 @@ public class CalendarView extends View {
     }
 
     /**
+     * 获取日期格式化格式.
+     *
+     * @return 格式化格式.
+     */
+    public String getDateFormatPattern(){
+        return mDateFormatPattern;
+    }
+
+    /**
      * 设置字体.
      *
      * @param typeface {@link Typeface}.
@@ -410,12 +446,32 @@ public class CalendarView extends View {
     }
 
     /**
-     * 获取日期格式化格式.
+     * 设置点击是否能够改变日期状态 (默认或选中状态).
      *
-     * @return 格式化格式.
+     * 默认是 false, 即点击只会响应点击事件 {@link OnDataClickListener}, 日期状态而不会做出任何改变.
+     *
+     * @param isChanged 是否能改变日期状态.
      */
-    public String getDateFormatPattern(){
-        return mDateFormatPattern;
+    public void setChangeDateStatus(boolean isChanged){
+        this.mIsChangeDateStatus = isChanged;
+    }
+
+    /**
+     * 获取是否能改变日期状态.
+     *
+     * @return {@link #mIsChangeDateStatus}.
+     */
+    public boolean isChangeDateStatus(){
+        return mIsChangeDateStatus;
+    }
+
+    /**
+     * 设置日期点击监听.
+     *
+     * @param listener 被通知的监听器.
+     */
+    public void setOnDataClickListener(OnDataClickListener listener){
+        this.mOnDataClickListener = listener;
     }
 
     /**
@@ -427,7 +483,15 @@ public class CalendarView extends View {
         this.mChangeListener = listener;
     }
 
-    private String getFormatDate(int year, int month, int day){
+    /**
+     * 根据指定的年月日按当前日历的格式格式化后返回.
+     *
+     * @param year  年.
+     * @param month 月.
+     * @param day   日.
+     * @return 格式化后的日期.
+     */
+    public String getFormatDate(int year, int month, int day){
         mSelectCalendar.set(year, month, day);
         return mDateFormat.format(mSelectCalendar.getTime());
     }

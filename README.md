@@ -2,7 +2,7 @@
 Android 平台上继承 View 实现的自定义日历控件.
 
 # 效果图
- ![image](https://github.com/Airsaid/CalendarView/blob/master/gif/preview.gif)
+ ![image](https://github.com/Airsaid/CalendarView/blob/master/preview/preview.gif)
 
 # 快速开始
 在你的 ```build.gradle``` 文件里添加：
@@ -34,6 +34,18 @@ compile 'com.github.airsaid:calendarview:1.0.2'
 ```
 
 2、设置监听器：
+- 设置点击监听：
+```
+mCalendarView.setOnDataClickListener(new CalendarView.OnDataClickListener() {
+            @Override
+            public void onDataClick(@NonNull CalendarView view, int year, int month, int day) {
+                Log.e("test", "year: " + year);
+                Log.e("test", "month,: " + (month + 1));
+                Log.e("test", "day: " + day);
+            }
+        });
+```
+- 设置日期选中或取消选中监听：
 ```
 mCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
     @Override
@@ -72,11 +84,15 @@ mCalendarView.setCalendar(calendar);
 mCalendarView.setTypeface(typeface);
 ```
 
-- 如果只想做展示效果，可以设置不可点击：
+- 设置是否可以点击：
 
 ```
-mCalendarView.setClickable(false);
+mCalendarView.setClickable(boolean);
 
+```
+- 设置是否可以改变日期状态：
+```
+mCalendarView.setChangeDateStatus(boolean);
 ```
 
 # 属性 & 方法
@@ -89,7 +105,7 @@ mCalendarView.setClickable(false);
 | cv_dayBackground | setDayBackground(Drawable background)|设置默认天的背景 |
 | cv_selectDayBackground | setSelectDayBackground(Drawable background)|设置选中后天的背景 |
 | cv_dateFormatPattern | setDateFormatPattern(String pattern)|设置日期格式化格式 |
-
+| cv_isChangeDateStatus | setChangeDateStatus(boolean isChanged)|设置是否能够改变日期状态 (默认或选中状态)|
 
 # TODO
 - [ ] 添加长按事件。
