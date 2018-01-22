@@ -7,7 +7,7 @@ Android 平台上继承 View 实现的自定义日历控件.
 # 快速开始
 在你的 ```build.gradle``` 文件里添加：
 ```
-compile 'com.github.airsaid:calendarview:1.0.2'
+compile 'com.github.airsaid:calendarview:1.0.3'
 ```
 
 # 用法示例

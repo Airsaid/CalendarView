@@ -25,6 +25,8 @@ import java.util.Locale;
  */
 public class MainActivity extends AppCompatActivity {
 
+    private static final String TAG = MainActivity.class.getSimpleName();
+
     private CalendarView mCalendarView;
     private TextView mTxtDate;
 
@@ -50,10 +52,10 @@ public class MainActivity extends AppCompatActivity {
         mCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, boolean select, int year, int month, int day) {
-                Log.e("test", "select: " + select);
-                Log.e("test", "year: " + year);
-                Log.e("test", "month,: " + (month + 1));
-                Log.e("test", "day: " + day);
+                Log.e(TAG, "select: " + select);
+                Log.e(TAG, "year: " + year);
+                Log.e(TAG, "month,: " + (month + 1));
+                Log.e(TAG, "day: " + day);
 
                 if(select){
                     Toast.makeText(getApplicationContext()
@@ -71,9 +73,9 @@ public class MainActivity extends AppCompatActivity {
         mCalendarView.setOnDataClickListener(new CalendarView.OnDataClickListener() {
             @Override
             public void onDataClick(@NonNull CalendarView view, int year, int month, int day) {
-                Log.e("test", "year: " + year);
-                Log.e("test", "month,: " + (month + 1));
-                Log.e("test", "day: " + day);
+                Log.e(TAG, "year: " + year);
+                Log.e(TAG, "month,: " + (month + 1));
+                Log.e(TAG, "day: " + day);
             }
         });
         // 设置是否能够点击
